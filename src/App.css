@@ -4,7 +4,7 @@
   text-align: center;
   font-family: Inter;
   min-width: 900px;
-  min-height: 600px;
+  height: 100vh;
   --fontColor: #293264;
   --bgColor: #F5F7FB;
   --accentLight: #D6DBF5;
@@ -21,7 +21,6 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 2em 0;
 }
 
 
@@ -146,4 +145,51 @@ button {
   margin-top: 1.5em;
   border: none;
 }
+
+.trivia-form {
+  width: 700px;
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.trivia-input {
+  display: flex;
+  justify-content: center;
+
+}
+.trivia-input label {
+      font-size: 1.2rem;
+      padding-right: .8em;
+
+}
+.trivia-input input {
+    border-radius: 15px;
+  border: none;
+    text-align: center;
+      font-size: 1.2rem;
+        width: 100px;
+
+
+
+}
+.trivia-input select
+ {
+  border-radius: 15px;
+  border: none;
+  width: 200px;
+  font-size: 1rem;
+  padding: 0 .4em;
+  text-align: left;
+        padding-right: .8em;
+
+
+}
+.trivia-input input:focus,
+.trivia-input select:focus
+ {
+  border: none;
+}
+
 
