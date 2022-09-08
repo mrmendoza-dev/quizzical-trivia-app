@@ -35,11 +35,9 @@ const categories = [
 
 
 
-
-
-
-
 export default function Menu(props: any) {
+
+        const navigate = useNavigate()
 
         const [formData, setFormData] = React.useState({
           amount: "10",
@@ -47,7 +45,7 @@ export default function Menu(props: any) {
           difficulty: "0",
           type: "0",
         });
-
+        
 
         function handleChange(event: any) {
           const { name, value, type, checked } = event.target;
@@ -59,24 +57,16 @@ export default function Menu(props: any) {
           });
         }
 
+
         function handleSubmit(event: any) {
           event.preventDefault();
-          // submitToApi(formData)
-          console.log(formData);
           generateUrl();
         }
 
 
 
 
-    async function generateQuestions() {
-      const base = "https://opentdb.com/api.php";
-      let numQuestions = 5;
-      let category = 0;
-      let difficulty = 0;
-      let questionType = "multiple";
-      // let encoding = "base64";
-      const url = `${base}?amount=${numQuestions}&category=${category}&difficulty=${difficulty}&type=${questionType}`;
+    async function generateQuestions(url: string) {
       const res = await fetch(url);
       const data = await res.json();
 
@@ -88,14 +78,14 @@ export default function Menu(props: any) {
       });
     }
 
-
     function generateUrl() {
         const base = "https://opentdb.com/api.php";
-
         const finalUrl = `${base}?amount=${formData.amount}&category=${formData.category}&difficulty=${formData.difficulty}&type=${formData.type}`;
-              console.log(finalUrl);
-
+        console.log(finalUrl);
+        console.log(formData);
+        navigate("/quiz");
     }
+
 
   return (
     <div className="Menu">
