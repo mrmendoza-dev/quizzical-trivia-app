@@ -9,16 +9,14 @@ import Quiz from "./pages/Quiz";
 
 
 function App() {
-  const defaultUrl = "https://opentdb.com/api.php?amount=10&category=12&difficulty=medium&type=multiple&encode=url3986";
   
-  const [questions, setQuestions] = React.useState([]);
-  const [quizzical, setQuizzical] = React.useState(false);
-  const [quizUrl, setQuizUrl] = React.useState(defaultUrl);
+  
 
 
-    const questionElements = questions.map((question) => {
-      return <Question key={nanoid()} question={question} />;
-    });
+
+    // const questionElements = questions.map((question) => {
+    //   return <Question key={nanoid()} question={question} />;
+    // });
 
 
 

@@ -1,9 +1,9 @@
 import { Routes, Route, Link, useNavigate } from "react-router-dom";
-import React from "react";
-import Form from "../components/Form"
+import React, {useContext} from "react";
 import { nanoid } from "nanoid";
-
-
+import Form from "../components/Form"
+import { Context } from "../Context";
+import FormInput from "../components/FormInput";
 
 
 
@@ -32,53 +32,32 @@ const categories = [
 ];
 
 
-
-
-
 export default function Menu(props: any) {
+    const navigate = useNavigate();
+    const [formData, setFormData] = React.useState({
+        amount: "10",
+        category: "0",
+        difficulty: "0",
+        type: "0",
+    });
 
-        const navigate = useNavigate()
-
-        const [formData, setFormData] = React.useState({
-          amount: "10",
-          category: "0",
-          difficulty: "0",
-          type: "0",
-        });
-        
-
-        function handleChange(event: any) {
-          const { name, value, type, checked } = event.target;
-          setFormData((prevFormData) => {
-            return {
-              ...prevFormData,
-              [name]: value,
-            };
-          });
-        }
-
-
-        function handleSubmit(event: any) {
-          event.preventDefault();
-          generateUrl();
-        }
-
-
-
-
-    async function generateQuestions(url: string) {
-      const res = await fetch(url);
-      const data = await res.json();
-
-      let questionData = data.results.map((question: any) => {
+    function handleChange(event: any) {
+        const { name, value, type, checked } = event.target;
+        setFormData((prevFormData) => {
         return {
-          ...question,
-          selected: false,
+            ...prevFormData,
+            [name]: value,
         };
-      });
+        });
     }
 
-    function generateUrl() {
+    function handleSubmit(event: any) {
+        event.preventDefault();
+        generateQuiz();
+    }
+
+
+    function generateQuiz() {
         const base = "https://opentdb.com/api.php";
         const finalUrl = `${base}?amount=${formData.amount}&category=${formData.category}&difficulty=${formData.difficulty}&type=${formData.type}`;
         console.log(finalUrl);
@@ -96,6 +75,7 @@ export default function Menu(props: any) {
 
       <div>
         <form onSubmit={handleSubmit} className="trivia-form">
+
           <div className="trivia-input">
             <label htmlFor="amount">Number of Questions</label>
             <input
@@ -116,7 +96,9 @@ export default function Menu(props: any) {
             >
               <option value="0">Any Category</option>
               {categories.map((c) => (
-                <option value={c[0]} key={nanoid()}>{c[1]}</option>
+                <option value={c[0]} key={nanoid()}>
+                  {c[1]}
+                </option>
               ))}
             </select>
           </div>
