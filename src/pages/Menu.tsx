@@ -41,6 +41,9 @@ export default function Menu(props: any) {
         type: "0",
     });
 
+
+    const { questions, generateQuestions } = useContext(Context);
+
     function handleChange(event: any) {
         const { name, value, type, checked } = event.target;
         setFormData((prevFormData) => {
@@ -62,6 +65,7 @@ export default function Menu(props: any) {
         const finalUrl = `${base}?amount=${formData.amount}&category=${formData.category}&difficulty=${formData.difficulty}&type=${formData.type}`;
         console.log(finalUrl);
         console.log(formData);
+        generateQuestions();
         navigate("/quiz");
     }
 

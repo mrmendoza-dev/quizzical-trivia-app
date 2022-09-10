@@ -15,8 +15,8 @@ function ContextProvider({ children }: Props) {
   const [apiUrl, setApiUrl] = useState(defaultUrl);
 
 
-    async function generateQuestions(url: string) {
-      const res = await fetch(url);
+    async function generateQuestions() {
+      const res = await fetch(apiUrl);
       const data = await res.json();
 
       let questionData = data.results.map((question: any) => {
@@ -26,6 +26,7 @@ function ContextProvider({ children }: Props) {
         };
       });
       setQuestions(questionData);
+      
     }
 
 
@@ -33,6 +34,8 @@ function ContextProvider({ children }: Props) {
     <Context.Provider
       value={{
         questions,
+        generateQuestions,
+        apiUrl,
       }}
     >
       {children}
