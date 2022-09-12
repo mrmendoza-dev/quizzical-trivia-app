@@ -1,18 +1,25 @@
 
+:root {
+  --fontColor: #293264;
+  --bgColor: #F5F7FB;
+  --accentLight: #D6DBF5;
+  --accentDark: #4D5B9E;
+  --fontLight: #8F95B0;
+  --correctColor: #94D7A2;
+  --wrongColor: #F6DADC;
+}
+
+body {
+  background-color: var(--bgColor);
+}
+
+
 /* App */
 .App {
   text-align: center;
   font-family: Inter;
   min-width: 900px;
   height: 100vh;
-  --fontColor: #293264;
-  --bgColor: #F5F7FB;
-  --accentLight: #D6DBF5;
-  --accentDark: #4D5B9E;
-
-  --fontLight: #8F95B0;
-  --correctColor: #94D7A2;
-  --wrongColor: #F6DADC;
 
   color: var(--fontColor);
   background-color: var(--bgColor);
@@ -21,6 +28,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  border: 1px solid #e9eaeb;
 }
 
 
@@ -193,3 +201,18 @@ button {
 }
 
 
+
+
+
+
+
+
+@media (min-width: 800px) {
+    .App {
+        display: flex;
+        max-width: 1000px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+}

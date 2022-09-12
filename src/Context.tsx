@@ -4,7 +4,7 @@ import React, { useState, useEffect, ReactNode } from "react";
 const Context = React.createContext({});
 
 interface Props {
-  children?: ReactNode;
+  children: ReactNode;
 }
 
 function ContextProvider({ children }: Props) {
@@ -26,7 +26,7 @@ function ContextProvider({ children }: Props) {
         };
       });
       setQuestions(questionData);
-      
+
     }
 
 
