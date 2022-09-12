@@ -42,7 +42,7 @@ export default function Menu(props: any) {
     });
 
 
-    const { questions, apiUrl } = useContext(Context);
+    // const { questions, apiUrl } = useContext(Context);
 
     function handleChange(event: any) {
         const { name, value, type, checked } = event.target;
@@ -64,7 +64,7 @@ export default function Menu(props: any) {
         const base = "https://opentdb.com/api.php";
         const finalUrl = `${base}?amount=${formData.amount}&category=${formData.category}&difficulty=${formData.difficulty}&type=${formData.type}`;
         console.log(formData);
-        console.log(apiUrl);
+        console.log(finalUrl);
         navigate("/quiz");
     }
 
