@@ -11,6 +11,7 @@
 
 body {
   background-color: var(--bgColor);
+  font-size: 16px;
 }
 
 
@@ -18,7 +19,12 @@ body {
 .App {
   text-align: center;
   font-family: Inter;
-  min-width: 900px;
+
+  min-width: 800px;
+  max-width: 1200px;
+  width: 80%;
+
+
   height: 100vh;
 
   color: var(--fontColor);
@@ -36,15 +42,14 @@ body {
 /* Title Page */
 .title-header {
   font-weight: 700;
-  font-size: 32px;
-    margin-bottom: 0;
+  font-size: 2rem;
+  margin-bottom: 0;
 
 }
 
 .title-subheader {
   font-weight: 500;
-  font-size: 24px;
-
+  font-size: 1.5rem;
   margin-bottom: 1.5em;
 }
 
@@ -65,7 +70,6 @@ body {
   text-align: left;
   width: 80%;
   margin: 0 auto;
-  /* max-width: 800px; */
   padding-bottom: 1em;
   border-bottom: 2px solid var(--accentLight);
 
@@ -73,7 +77,7 @@ body {
 
 .question-prompt {
   font-weight: 700;
-  font-size: 22px;
+  font-size: 1.4rem;
   margin-bottom: 0;
   line-height: 1.4;
 
@@ -89,12 +93,12 @@ body {
 
 .question-category {
   font-weight: 600;
-  font-size: 18px;
+  font-size: 1.2rem;
 
 }
 
 .question-difficulty {
-  font-size: 14px;
+  font-size: 0.8rem;
   font-weight: 500;
   text-transform: uppercase;
   background-color:#D6DBF5;
@@ -112,7 +116,7 @@ body {
 
 .question-btn {
     font-weight: 600;
-    font-size: 16px;
+    font-size: 1rem;
     border-radius: 20px;
     padding: .5em 2em;
     color: var(--fontColor);
@@ -130,7 +134,7 @@ button {
 
 .start-btn {
   background-color: var(--accentDark);
-  font-size: 22px;
+  font-size: 1.4rem;
   font-weight: 600;
 
   color: #F5F7FB;
@@ -143,7 +147,7 @@ button {
 
 .game-btn {
   background-color: var(--accentDark);
-  font-size: 16px;
+    font-size: 1rem;
   font-weight: 600;
 
   color: #F5F7FB;
@@ -155,7 +159,6 @@ button {
 }
 
 .trivia-form {
-  width: 700px;
   text-align: right;
   display: flex;
   flex-direction: column;
@@ -174,26 +177,22 @@ button {
 }
 .trivia-input input {
     border-radius: 15px;
-  border: none;
+    border: none;
     text-align: center;
-      font-size: 1.2rem;
-        width: 100px;
-
-
-
+    font-size: 1.2rem;
+    width: 6em;
 }
-.trivia-input select
- {
+
+.trivia-input select {
   border-radius: 15px;
   border: none;
-  width: 200px;
+  width: 12em;
   font-size: 1rem;
   padding: 0 .4em;
   text-align: left;
-        padding-right: .8em;
-
-
+  padding-right: .8em;
 }
+
 .trivia-input input:focus,
 .trivia-input select:focus
  {
@@ -207,10 +206,11 @@ button {
 
 
 
-@media (min-width: 800px) {
+@media (min-width: 400px) {
     .App {
         display: flex;
-        max-width: 1000px;
+        max-width: 400px;
+        width: 80%;
         margin-left: auto;
         margin-right: auto;
     }
