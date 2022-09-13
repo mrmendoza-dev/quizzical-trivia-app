@@ -206,11 +206,13 @@ button {
 
 
 
-@media (min-width: 400px) {
+@media (max-width: 400px) {
     .App {
+        font-size: .6rem;
         display: flex;
+        min-width: 80%;
         max-width: 400px;
-        width: 80%;
+        width: 90%;
         margin-left: auto;
         margin-right: auto;
     }
