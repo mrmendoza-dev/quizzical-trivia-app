@@ -5,7 +5,7 @@ Solo project from Scrimba.com. Trivia quizzer app built in React using the OTDb 
 
 ## Features
 - Generate trivia questions to test yourself
-- Adjust Trivia API parameter
+- Adjust Trivia API parameters
   - Number of questions
   - Category
   - Difficulty
