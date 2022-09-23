@@ -13,7 +13,7 @@ Solo project from Scrimba.com. Trivia quizzer app built in React using the OTDb 
 
 ## Improvements
 - Dark mode
-- Elpased time
+- Elapsed time
 
 ## Resources
 [Open Trivia Database API](https://opentdb.com/api_config.php)
