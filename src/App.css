@@ -26,6 +26,7 @@ body {
   font-family: Inter;
   width: 400px;
   height: 100vh;
+  overflow: hidden;
   color: var(--fontColor);
   background-color: var(--bgColor);
   display: flex;
