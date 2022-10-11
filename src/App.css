@@ -1,4 +1,8 @@
 
+* {
+  box-sizing: border-box;
+}
+
 :root {
   --fontColor: #293264;
   --bgColor: #F5F7FB;
@@ -19,22 +23,16 @@ body {
 .App {
   text-align: center;
   font-family: Inter;
-
-  min-width: 800px;
-  max-width: 1200px;
-  width: 80%;
-
-
+  min-width: 400px;
   height: 100vh;
-
   color: var(--fontColor);
   background-color: var(--bgColor);
-
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   border: 1px solid #e9eaeb;
+  font-size: 1rem;
 }
 
 
@@ -42,7 +40,7 @@ body {
 /* Title Page */
 .title-header {
   font-weight: 700;
-  font-size: 2rem;
+  font-size: 1.8rem;
   margin-bottom: 0;
 
 }
@@ -52,8 +50,6 @@ body {
   font-size: 1.5rem;
   margin-bottom: 1.5em;
 }
-
-
 
 
 
@@ -134,29 +130,27 @@ button {
 
 .start-btn {
   background-color: var(--accentDark);
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   font-weight: 600;
-
   color: #F5F7FB;
-  padding: 1em 3em;
+  padding: 1em 2em;
   /* width: 30%; */
   border-radius: 25px;
-    border: none;
+  border: none;
 }
 
 
 .game-btn {
   background-color: var(--accentDark);
-    font-size: 1rem;
+  font-size: 1rem;
   font-weight: 600;
-
   color: #F5F7FB;
   padding: 1.25em 3em;
-
   border-radius: 20px;
   margin-top: 1.5em;
   border: none;
 }
+
 
 .trivia-form {
   text-align: right;
@@ -171,15 +165,13 @@ button {
 
 }
 .trivia-input label {
-      font-size: 1.2rem;
-      padding-right: .8em;
+    padding-right: .8em;
 
 }
 .trivia-input input {
     border-radius: 15px;
     border: none;
     text-align: center;
-    font-size: 1.2rem;
     width: 6em;
 }
 
@@ -187,7 +179,6 @@ button {
   border-radius: 15px;
   border: none;
   width: 12em;
-  font-size: 1rem;
   padding: 0 .4em;
   text-align: left;
   padding-right: .8em;
@@ -206,15 +197,16 @@ button {
 
 
 
-@media (max-width: 400px) {
+@media (min-width: 800px) {
     .App {
-        font-size: .6rem;
+        font-size: 1.4rem;
         display: flex;
-        min-width: 80%;
-        max-width: 400px;
-        width: 90%;
         margin-left: auto;
         margin-right: auto;
+        width: 800px;
+    }
+    .title-header {
+      font-size: 2rem;
     }
 
 }
