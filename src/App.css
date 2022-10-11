@@ -17,6 +17,8 @@ body {
   background-color: var(--bgColor);
   font-size: 16px;
   overflow: hidden;
+  height: 100vh;
+
 }
 
 
