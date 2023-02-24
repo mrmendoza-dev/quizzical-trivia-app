@@ -26,7 +26,6 @@ export default function Form() {
     function handleSubmit(event: any) {
         event.preventDefault()
         // submitToApi(formData)
-        console.log(formData)
     }
     
     return (

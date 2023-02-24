@@ -9,11 +9,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "marked": "^4.2.12",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.3.0"
   },
   "devDependencies": {
+    "@types/marked": "^4.0.8",
     "@types/react": "^18.0.17",
     "@types/react-dom": "^18.0.6",
     "@vitejs/plugin-react": "^2.0.1",

@@ -1,11 +1,7 @@
 import { Routes, Route, Link, useNavigate } from "react-router-dom";
 import React, {useContext} from "react";
 import { nanoid } from "nanoid";
-import Form from "../components/Form"
 import { Context } from "../Context";
-import FormInput from "../components/FormInput";
-
-
 
 
 const categories = [
@@ -32,10 +28,10 @@ const categories = [
 ];
 
 
-export default function Menu(props: any) {
+export default function MenuPage(props: any) {
     const navigate = useNavigate();
     const [formData, setFormData] = React.useState({
-        amount: "10",
+        amount: "5",
         category: "0",
         difficulty: "0",
         type: "0",
@@ -61,24 +57,20 @@ export default function Menu(props: any) {
 
 
     function generateQuiz() {
-        const base = "https://opentdb.com/api.php";
-        const finalUrl = `${base}?amount=${formData.amount}&category=${formData.category}&difficulty=${formData.difficulty}&type=${formData.type}`;
-        console.log(formData);
-        console.log(finalUrl);
+        
         navigate("/quiz");
     }
 
 
   return (
-    <div className="Menu">
-      <div>
-        <p className="title-header">Quizzical</p>
-        <p className="title-subheader">Test your trivia knowledge!</p>
+    <div className="MenuPage">
+      <div className="Header">
+        <p className="title">Quizzical</p>
+        <p className="subtitle">Test your trivia knowledge!</p>
       </div>
 
-      <div>
-        <form onSubmit={handleSubmit} className="trivia-form">
-
+      <div className="QuizForm">
+        <form onSubmit={handleSubmit} className="QuizForm">
           <div className="trivia-input">
             <label htmlFor="amount">Number of Questions</label>
             <input

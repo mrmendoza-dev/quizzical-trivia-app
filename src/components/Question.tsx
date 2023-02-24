@@ -1,11 +1,18 @@
-
+import { nanoid } from "nanoid";
+import marked from "marked";
+import { useState, useEffect} from "react";
 
 export default function Question(props: any) {
-  let questionData = props.question;
+  let questionData = props.questionData;
+    const [selectedAnswer, setSelectedAnswer] = useState("");
+const [answers, setAnswers] = useState<any>([]);
 
+
+
+  useEffect(()=> {
   let correct = questionData.correct_answer;
   let incorrect = questionData.incorrect_answers;
-  let answersArray = [];
+  let answersArray: any = [];
 
   function shuffleArray(array: any) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -19,21 +26,58 @@ export default function Question(props: any) {
   );
   answersArray.push({ answer: correct, correct: true });
   shuffleArray(answersArray);
+  setAnswers(answersArray);
+  }, [])
+
+
+
+
+
+
+  const handleAnswerClick = (answer: any) => {
+    setSelectedAnswer(answer);
+      // console.log(answer);
+  };
 
   return (
     <div className="Question">
-      <p className="question-prompt">{questionData.question}</p>
+      <p
+        className="prompt"
+        dangerouslySetInnerHTML={{ __html: questionData.question }}
+      />
 
-      <div className="question-subheader">
-        <p className="question-category">{questionData.category}</p>
-        <p className="question-difficulty">{questionData.difficulty}</p>
+      <div className="subheader">
+        <p className="category">{questionData.category}</p>
+        <p className="difficulty">{questionData.difficulty}</p>
       </div>
 
-      <div className="question-answers">
-        <button className="question-btn">{answersArray[0].answer}</button>
-        <button className="question-btn">{answersArray[1].answer}</button>
-        <button className="question-btn">{answersArray[2].answer}</button>
-        <button className="question-btn">{answersArray[3].answer}</button>
+      <div className="answers">
+        {answers.map((answer: any, index: any) => {
+          const isCorrect: any = answers[index].correct;
+          const isSelected = selectedAnswer === answers[index].answer;
+
+          let className = "btn-answer";
+
+          if (isSelected) {
+            className += isCorrect ? " correct" : " incorrect";
+          }
+
+          return (
+            <button
+              key={nanoid()}
+              className={isSelected ? "btn-answer btn-selected" : "btn-answer"}
+              onClick={() => handleAnswerClick(answers[index].answer)}
+              // disabled={
+              //   selectedAnswer !== "" &&
+              //   selectedAnswer !== answersArray[index].answer
+              // }
+
+              style={{}}
+            >
+              <p dangerouslySetInnerHTML={{ __html: answers[index].answer }} />
+            </button>
+          );
+        })}
       </div>
     </div>
   );
