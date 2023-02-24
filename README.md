@@ -16,4 +16,5 @@ Solo project from Scrimba.com. Trivia quizzer app built in React using the OTDb 
 - Elapsed time
 
 ## Resources
-[Open Trivia Database API](https://opentdb.com/api_config.php)
+- [Open Trivia Database API](https://opentdb.com/api_config.php)
+- [Figma UI](https://www.figma.com/file/E9S5iPcm10f0RIHK8mCqKL/Quizzical-App?node-id=0%3A1&t=FtzRbdyZZhiCgsY2-0)
