@@ -1,42 +1,38 @@
 import { nanoid } from "nanoid";
 import marked from "marked";
-import { useState, useEffect} from "react";
+import { useState, useEffect } from "react";
+import "./Question.scss";
+
+
 
 export default function Question(props: any) {
   let questionData = props.questionData;
-    const [selectedAnswer, setSelectedAnswer] = useState("");
-const [answers, setAnswers] = useState<any>([]);
+  const [selectedAnswer, setSelectedAnswer] = useState("");
+  const [answers, setAnswers] = useState<any>([]);
 
+  useEffect(() => {
+    let correct = questionData.correct_answer;
+    let incorrect = questionData.incorrect_answers;
+    let answersArray: any = [];
 
-
-  useEffect(()=> {
-  let correct = questionData.correct_answer;
-  let incorrect = questionData.incorrect_answers;
-  let answersArray: any = [];
-
-  function shuffleArray(array: any) {
-    for (let i = array.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [array[i], array[j]] = [array[j], array[i]];
+    function shuffleArray(array: any) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
     }
-  }
 
-  incorrect.forEach((answer: any) =>
-    answersArray.push({ answer: answer, correct: false })
-  );
-  answersArray.push({ answer: correct, correct: true });
-  shuffleArray(answersArray);
-  setAnswers(answersArray);
-  }, [])
-
-
-
-
-
+    incorrect.forEach((answer: any) =>
+      answersArray.push({ answer: answer, correct: false })
+    );
+    answersArray.push({ answer: correct, correct: true });
+    shuffleArray(answersArray);
+    setAnswers(answersArray);
+  }, []);
 
   const handleAnswerClick = (answer: any) => {
     setSelectedAnswer(answer);
-      // console.log(answer);
+    // console.log(answer);
   };
 
   return (

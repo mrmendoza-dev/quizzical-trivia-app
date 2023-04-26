@@ -1,0 +1,98 @@
+@import "../../App.scss";
+
+
+.Question {
+  text-align: left;
+  margin: 0 auto;
+  border-bottom: 2px solid $clr-accent-light;
+  max-width: 800px;
+  padding: 1.2em 0;
+  width: 100%;
+}
+
+.Question .prompt {
+  font-weight: 600;
+  font-size: 1.4rem;
+  margin-bottom: 0.4em;
+  line-height: 1.4;
+}
+
+.Question .subheader {
+  display: flex;
+  align-items: flex-start;
+  align-items: center;
+  gap: 1em;
+  margin-bottom: 0.4em;
+}
+
+.Question .category {
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+
+.Question .difficulty {
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  background-color: #d6dbf5;
+  color: #293264;
+  padding: 0.25em 1em;
+  border-radius: 8px;
+}
+
+.Question .answers {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1em;
+  padding: 10px;
+}
+
+.btn-answer {
+  font-weight: 600;
+  font-size: 1rem;
+  border-radius: 16px;
+  padding: 0.4em 1.6em;
+  color: $clr-font;
+  background-color: $clr-bg;
+  border: 2px solid $clr-font;
+  transition: all 200ms;
+}
+
+.btn-answer:hover {
+  background-color: $clr-accent-light;
+  border-color: $clr-accent-light;
+}
+
+.btn-selected {
+  background-color: $clr-accent-light;
+  border-color: $clr-accent-light;
+  transition: all 200ms;
+}
+
+
+@media screen and (max-width: $mobile-width) {
+
+  .Question {
+    .prompt {
+      font-size: 1.1rem;
+    }
+    .category {
+      font-size: 0.9rem;
+    }
+    .difficulty {
+      font-size: 0.7rem;
+    }
+    .answers {
+      flex-direction: row;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.6em;
+    }
+    .btn-answer {
+      font-size: 0.9rem;
+      padding: 0.4em 1.2em;
+    }
+  }
+
+}
