@@ -33,6 +33,7 @@
     .subtitle {
       font-weight: 400;
       font-size: 1.5rem;
+      margin-top: 0.6em;
     }
   }
 
@@ -52,6 +53,7 @@
     width: 6em;
     padding: 0.4em 0.4em;
     font-size: 1rem;
+    color: $clr-font;
   }
 
   .trivia-input select {
@@ -62,6 +64,7 @@
     text-align: left;
     padding: 0.4em 0.4em;
     font-size: 1rem;
+    color: $clr-font;
   }
 
   .trivia-input input:focus,
