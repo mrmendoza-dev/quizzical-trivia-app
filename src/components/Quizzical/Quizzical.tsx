@@ -1,12 +1,11 @@
-import { Routes, Route, Link, useNavigate } from "react-router-dom";
-import "./Quizzical.scss";
-import { nanoid } from "nanoid";
 import axios from "axios";
+import { nanoid } from "nanoid";
+import { useEffect, useState } from "react";
 import Question from "../Question/Question";
-import React, { useEffect, useState } from "react";
+import "./Quizzical.scss";
 
 const categories = [
-  [0, "Any Category"],
+  //   [0, "Any Category"],
   [9, "General Knowledge"],
   [10, "Entertainment: Books"],
   [11, "Entertainment: Film"],
@@ -31,32 +30,55 @@ const categories = [
 function Quizzical() {
   const [questions, setQuestions] = useState([]);
   const [gameOver, setGameOver] = useState(false);
+  const [score, setScore] = useState(0);
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
-    amount: "10",
+    amount: "5",
     category: "0",
     difficulty: "0",
     type: "0",
   });
+  const [selectedAnswers, setSelectedAnswers] = useState<any>([]);
+  const [correctAnswers, setCorrectAnswers] = useState<string[]>([]);
 
   function generateQuiz() {
     const base = "https://opentdb.com/api.php";
     const finalUrl = `${base}?amount=${formData.amount}&category=${formData.category}&difficulty=${formData.difficulty}&type=${formData.type}`;
 
+    resetGame();
+
     axios
       .get(finalUrl)
       .then((response) => {
         const data = response.data;
+        setQuestions(data.results);
+        const correctAnswers = data.results.map((question: any) => {
+          return question.correct_answer;
+        });
+        setCorrectAnswers(correctAnswers);
 
         setTimeout(() => {
-          setQuestions(data.results);
-          setLoading(false); 
-        }, 2000);
+          setLoading(false);
+        }, 1000);
       })
       .catch((error) => console.error(error));
   }
 
+  useEffect(() => {
+    setSelectedAnswers(Array(questions.length).fill(""));
+  }, [questions]);
 
+  function resetGame() {
+    setGameOver(false);
+    setQuestions([]);
+    setScore(0);
+    setSelectedAnswers([]);
+  }
+
+  function playAgain() {
+    resetGame();
+    generateQuiz();
+  }
 
   function handleChange(event: any) {
     const { name, value } = event.target;
@@ -74,15 +96,26 @@ function Quizzical() {
     generateQuiz();
   }
 
+  function checkAnswers() {
+    let score = 0;
+    for (let i = 0; i < selectedAnswers.length; i++) {
+      if (selectedAnswers[i] === correctAnswers[i]) {
+        score++;
+      }
+    }
+    setScore(score);
+    setGameOver(true);
+  }
+
   return (
     <div className="Quizzical">
-      <div className="MenuPage">
-        <div className="Header">
-          <p className="title">Quizzical</p>
+      <form onSubmit={handleSubmit} className="QuizForm">
+        <div className="title">
+          <p className="main">Quizzical</p>
           <p className="subtitle">Test your trivia knowledge!</p>
         </div>
 
-        <form onSubmit={handleSubmit} className="QuizForm">
+        <div className="input-wrapper">
           <div className="trivia-input">
             <label htmlFor="amount">Number of Questions</label>
             <input
@@ -136,14 +169,14 @@ function Quizzical() {
               <option value="boolean">True / False</option>
             </select>
           </div>
+        </div>
 
-          <button className="btn-start" onClick={generateQuiz}>
-            Start Quiz
-          </button>
-        </form>
-      </div>
+        <button className="btn-start" onClick={generateQuiz}>
+          Start Quiz
+        </button>
+      </form>
 
-      <div className="QuizPage">
+      <div className="Quiz">
         {loading ? (
           <div className="loading-wrapper">
             <div className="loading-animation">
@@ -155,36 +188,40 @@ function Quizzical() {
           </div>
         ) : (
           <>
-            <div className="header">
-              <Link to="/" className="btn">
-                Back
-              </Link>
-            </div>
-
-            <div className="questions">
-              {questions.map((question) => {
-                return (
-                  <Question key={nanoid()} questionData={question}></Question>
-                );
-              })}
-            </div>
-
-            <div className="footer">
-              {gameOver ? (
-                <div className="flex">
-                  <p className="score-text">
-                    You scored _/{questions.length} correct answers
-                  </p>
-                  <button className="btn-game" onClick={generateQuiz}>
-                    Play again
-                  </button>
+            {questions.length > 0 && (
+              <>
+                <div className="questions">
+                  {questions.map((question, index) => {
+                    return (
+                      <Question
+                        key={index}
+                        questionData={question}
+                        setSelectedAnswers={setSelectedAnswers}
+                        questionIndex={index}
+                        gameOver={gameOver}
+                      />
+                    );
+                  })}
                 </div>
-              ) : (
-                <button className="btn-game flex" onClick={generateQuiz}>
-                  Check Answers
-                </button>
-              )}
-            </div>
+
+                <div className="footer">
+                  {gameOver ? (
+                    <div className="flex">
+                      <p className="score-text">
+                        You scored {score}/{questions.length} correct answers
+                      </p>
+                      <button className="btn-game" onClick={playAgain}>
+                        Play again
+                      </button>
+                    </div>
+                  ) : (
+                    <button className="btn-game flex" onClick={checkAnswers}>
+                      Check Answers
+                    </button>
+                  )}
+                </div>
+              </>
+            )}
           </>
         )}
       </div>

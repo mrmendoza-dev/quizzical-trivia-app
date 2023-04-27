@@ -3,10 +3,8 @@ import marked from "marked";
 import { useState, useEffect } from "react";
 import "./Question.scss";
 
-
-
 export default function Question(props: any) {
-  let questionData = props.questionData;
+  const { questionData, setSelectedAnswers, gameOver } = props;
   const [selectedAnswer, setSelectedAnswer] = useState("");
   const [answers, setAnswers] = useState<any>([]);
 
@@ -26,14 +24,41 @@ export default function Question(props: any) {
       answersArray.push({ answer: answer, correct: false })
     );
     answersArray.push({ answer: correct, correct: true });
-    shuffleArray(answersArray);
+    if (incorrect.length > 1) {
+      shuffleArray(answersArray);
+    }
+
     setAnswers(answersArray);
   }, []);
 
   const handleAnswerClick = (answer: any) => {
     setSelectedAnswer(answer);
-    // console.log(answer);
+    setSelectedAnswers((prevSelectedAnswers: any) => {
+      const newSelectedAnswers = [...prevSelectedAnswers];
+      newSelectedAnswers[props.questionIndex] = answer;
+      return newSelectedAnswers;
+    });
   };
+
+  function generateButtonStyle(selected: any, correct: any) {
+    let style: any = {};
+
+    if (gameOver && selected) {
+      if (correct) {
+        style.backgroundColor = "#94d7a2";
+        style.borderColor = "#94d7a2";
+      } else {
+        style.backgroundColor = "#f6dadc";
+        style.borderColor = "#f6dadc";
+      }
+    } else if (gameOver && correct) {
+      style.backgroundColor = "#94d7a2";
+      style.borderColor = "#94d7a2";
+    } else if (gameOver && !selected) {
+      style.opacity = "0.5";
+    }
+    return style;
+  }
 
   return (
     <div className="Question">
@@ -63,12 +88,8 @@ export default function Question(props: any) {
               key={nanoid()}
               className={isSelected ? "btn-answer btn-selected" : "btn-answer"}
               onClick={() => handleAnswerClick(answers[index].answer)}
-              // disabled={
-              //   selectedAnswer !== "" &&
-              //   selectedAnswer !== answersArray[index].answer
-              // }
-
-              style={{}}
+              style={generateButtonStyle(isSelected, isCorrect)}
+              disabled={gameOver}
             >
               <p dangerouslySetInnerHTML={{ __html: answers[index].answer }} />
             </button>
