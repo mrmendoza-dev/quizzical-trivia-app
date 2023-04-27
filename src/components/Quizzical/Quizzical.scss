@@ -212,10 +212,12 @@
   display: inline-block;
   width: 80px;
   height: 80px;
+  margin-top: 3em;
   border: 8px solid $clr-accent-light;
   border-radius: 50%;
   border-top: 8px solid $clr-accent-dark;
   animation: spin 2s linear infinite;
+  position: absolute;
 }
 
 .loading-wrapper {
@@ -224,8 +226,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  position: fixed;
-  top: 0;
+//   position: relative;
+  overflow: hidden;
+
+
+
   left: 0;
   right: 0;
   bottom: 0;
